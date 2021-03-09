@@ -1,5 +1,6 @@
 $('.spinner-grow').hide()
 $('#content-spinner').hide()
+$('.messages').hide()
 $(document).ready(() => {
     $('.logo').click(() => window.location.reload())
     let show_content_spinner = false
@@ -13,17 +14,26 @@ $(document).ready(() => {
     })
 
     $('#search').click(() => {
+        if(parseInt($('#number_in').val()) > 999999999999999){
+            $('.messages').append(`<p>Some information cannot be obtained with such a large number </br> (It can take up to 30 seconds)</p>`)
+            $('.messages').fadeIn()
+            setTimeout(() => {
+                $('.messages').fadeOut(500)
+                $('.messages').empty()
+            }, 6000)
+        }
         $('#content').empty()
         $('#number_in').css('borderBottomColor', "#FBA700")
         $('#search').fadeOut(1, () => {
             if(!show_content_spinner){
-                $('.spinner-grow').hide()
+                $('#first-spinner').show()
             }
             let n = $('#number_in').val()
             const url = 'get_data/'+n
             $.ajax({
                 url: url,
                 success: (data) => {
+                    $('#number_in').blur()
                     if(show_content_spinner){
                         console.log('hide')
                         $('#content-spinner').fadeOut()
@@ -55,7 +65,7 @@ $(document).ready(() => {
                             )
                         } else if(k == 'triangle' && v == true){
                             properties.push(
-                                `<div>Triangle number <img src="/static/images/triangle.svg" alt=""></div>`
+                                `<div>Triangular number <img src="/static/images/triangle.svg" alt=""></div>`
                             )
                         } else if(k == 'square' && v == true){
                             properties.push(
@@ -63,13 +73,13 @@ $(document).ready(() => {
                             )
                         } else if(k == 'taxicab' && v == true){
                             properties.push(
-                                `<div>Taxicab number <img src="/static/images/square.svg" alt=""></div>`
+                                `<div>Taxicab number <img src="/static/images/taxi.svg" alt=""></div>`
                             )
                         } else if(k == "roots" && v && v.length != 0){
                             properties.push(
                                 v.map((i) => {
                                     return `<div>The ${i.power} power of ${i.number}</div>`
-                                }).join()
+                                }).join("")
                             )
                         } else if(k == 'year' && v == true){
                             properties.push(
@@ -102,7 +112,7 @@ $(document).ready(() => {
                     `)
 
                     div.append(`
-                        <div class="col-lg-6 float-right">
+                        <div class="col-lg-6 float-left">
                         <div class="box">
                         <h3 class="header">Numeric systems</h3>
                         <div class="content properties">
@@ -116,7 +126,7 @@ $(document).ready(() => {
                     `)
 
                     div.append(`
-                        <div class="col-lg-6 float-left">
+                        <div class="col-lg-6 float-right">
                             <div class="box">
                             <h3 class="header">Factors ${data.timeouts.indexOf('factors') != -1 ? " (timed out)" : ""}</h3>
                             <div class="content">
@@ -127,7 +137,7 @@ $(document).ready(() => {
                     `)
 
                     div.append(`
-                        <div class="col-lg-6 float-right">
+                        <div class="col-lg-6 float-left">
                             <div class="box">
                             <h3 class="header">Speed</h3>
                             <div class="content">
@@ -184,6 +194,16 @@ $(document).ready(() => {
                     })
                     $('.wrapper').animate({height: "10%", top: "0"}, 900)
                     $('body').css('overflow-y', 'scroll')
+                },
+                error: () =>{
+                    $('.spinner-grow').fadeOut()
+                    $('#search').fadeIn()
+                    $('.messages').append(`<p>Please type in a positive integer bigger than 1</p>`)
+                    $('.messages').fadeIn()
+                    setTimeout(() => {
+                        $('.messages').fadeOut(500)
+                        $('.messages').empty()
+                    }, 3000)
                 }
             });
         })
