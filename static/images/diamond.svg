@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="61" height="49" viewBox="0 0 61 49">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_12" data-name="Rectangle 12" width="61" height="49" transform="translate(1606.039 436)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="diamond" transform="translate(-1606.039 -436)" clip-path="url(#clip-path)">
+    <path id="gem-regular_1_" data-name="gem-regular (1)" d="M49.612,0H11.976a1.36,1.36,0,0,0-1.069.477L.215,13.485A.918.918,0,0,0,.29,14.74L29.8,44.857a1.46,1.46,0,0,0,1.989,0L61.3,14.74a.918.918,0,0,0,.075-1.255L50.692.477A1.382,1.382,0,0,0,49.612,0ZM47.548,4.242l6.768,8.484H47L41.475,4.242h6.073Zm-21.609,0h9.7l5.528,8.484H20.423Zm-11.9,0h6.073l-5.528,8.484H7.272Zm-4.6,12.725h5.5l7.3,14.139Zm11,0h20.7l-10.35,21.5Zm18.9,14.139L46.64,16.967h5.5Z" transform="translate(1606.037 437.614)" fill="#fed78c"/>
+  </g>
+</svg>
