@@ -235,7 +235,9 @@ $(document).ready(() => {
                 error: () =>{
                     // On error show error message in messages box
                     $('.spinner-grow').fadeOut()
-                    $('#search').fadeIn()
+                    if(search_count < 2){
+                        $('#search').fadeIn()
+                    }
                     $('.messages').append(`<p>Please type in a positive integer bigger than 1</p>`)
                     $('.messages').fadeIn()
                     setTimeout(() => {
