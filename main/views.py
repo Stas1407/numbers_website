@@ -11,7 +11,6 @@ def landing_page(request):
 def get_data(request, n):
     number = Number()
     data = number.run(n)
-    print(data)
     if not data:
         return HttpResponse(status=404)
     return HttpResponse(json.dumps(data))
