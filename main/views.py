@@ -14,6 +14,3 @@ def get_data(request, n):
     if not data:
         return HttpResponse(status=404)
     return HttpResponse(json.dumps(data))
-
-def second(request):
-    return render(request, 'second_part.html')
