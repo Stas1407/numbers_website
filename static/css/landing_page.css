@@ -32,7 +32,7 @@ body, html{
     color: black;
     cursor: pointer;
     pointer-events: all;
-    z-index: 0;
+    z-index: 10;
 }
 
 .logo img{

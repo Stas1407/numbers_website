@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.landing_page, name="landing_page"),
-    path('get_data/<int:n>', views.get_data, name="get_data")
+    path('get_data/<str:n>', views.get_data, name="get_data")
 ]

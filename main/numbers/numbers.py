@@ -52,6 +52,8 @@ class Number:
         Assumes that n is a year and checks if it's leap.
     check_phone(n)
         Assumes that n is a phone number and checks from which country is it.
+    check_numeric_systems(n)
+        If n is not in decimal system it converts it.
     check_number(n)
         Checks if n is a positive integer.
     run(n)
@@ -610,6 +612,30 @@ class Number:
                     return o
         return {}
 
+    def check_numeric_systems(self, n):
+        """Checks if number is in different system than decimal and converts it.
+
+        Parameters
+        -----------
+        n : string
+            Number to check (In string format)
+
+        Returns
+        --------
+        n : string
+            Converted to decimal (if possible)
+        False
+            If convertion was not possible
+        """
+
+        try:
+            if n[:2] == "0x" or n[:2] == "0b" or n[:2] == "0o":
+                n = str(int(n, 0))
+        except ValueError:
+            return False
+
+        return n
+
     def check_number(self, n):
         """Checks if number is a positive integer
 
@@ -639,7 +665,7 @@ class Number:
 
         Parameters
         -----------
-        number : int, str
+        number : str
             A number to get information about
 
         Returns
@@ -647,6 +673,10 @@ class Number:
         dictionary
             A dictionary with all of the gathered data
         """
+
+        number = self.check_numeric_systems(number)
+        if not number:
+            return False
 
         if not self.check_number(str(number)):
             return False
